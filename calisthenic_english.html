@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>CALISTHENIC PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --orange-light: #FB923C;
+            --orange-primary: #F97316;
+            --orange-secondary: #EA580C;
+            --orange-dark: #C2410C;
+            --black-deep: #0A0A0A;
+            --black-surface: #121212;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Background Image Layers with 70% Visibility */
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            background: linear-gradient(145deg, #000000 70%, rgba(251, 146, 60, 0.05) 100%);
+        }
+        
+        .quiz-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: -9;
+        }
+        
+        .analysis-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: -9;
+        }
+        
+        .exercise-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: -9;
+        }
+        
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: -9;
+        }
+
+        /* Question Popup Background */
+        .question-popup-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.9;
+            z-index: -9;
+        }
+
+        /* iPhone 12 Mini Optimization */
+        @media (max-width: 375px) {
+            .container { padding: 12px !important; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.25rem !important; }
+            .btn { padding: 12px 16px !important; font-size: 14px !important; }
+            .card { padding: 14px !important; }
+        }
+
+        /* Main Container */
+        .main-container {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(251, 146, 60, 0.25);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.9),
+                0 0 24px rgba(251, 146, 60, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* 3D Text Effects */
+        .text-3d-orange {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(251, 146, 60, 0.1),
+                0 4px 0 rgba(251, 146, 60, 0.1),
+                0 5px 0 rgba(251, 146, 60, 0.08),
+                0 6px 1px rgba(0, 0, 0, 0.1),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.25);
+            color: var(--orange-light);
+        }
+        
+        .text-3d-white {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(255, 255, 255, 0.05),
+                0 4px 0 rgba(255, 255, 255, 0.04),
+                0 5px 0 rgba(255, 255, 255, 0.03),
+                0 6px 1px rgba(0, 0, 0, 0.1),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+        }
+        
+        .text-3d-secondary {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.05),
+                0 2px 0 rgba(255, 255, 255, 0.04),
+                0 3px 0 rgba(251, 146, 60, 0.08),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Orange Effects with 3D */
+        .orange-shimmer {
+            background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange-primary) 25%, #FFFFFF 50%, var(--orange-primary) 75%, var(--orange-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(251, 146, 60, 0.1);
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Buttons with 3D Effects */
+        .orange-btn {
+            background: linear-gradient(135deg, var(--orange-secondary) 0%, var(--orange-primary) 100%);
+            color: white;
+            font-weight: 800;
+            border: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 4px 0 var(--orange-dark),
+                0 6px 10px rgba(251, 146, 60, 0.3),
+                0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .orange-btn:hover, .orange-btn:active {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 0 var(--orange-dark),
+                0 8px 15px rgba(251, 146, 60, 0.4),
+                0 12px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .orange-btn:active {
+            transform: translateY(1px);
+            box-shadow: 
+                0 2px 0 var(--orange-dark),
+                0 3px 5px rgba(251, 146, 60, 0.3);
+        }
+        
+        .secondary-btn {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(251, 146, 60, 0.4);
+            color: var(--orange-light);
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.3),
+                0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .secondary-btn:hover, .secondary-btn:active {
+            background: rgba(251, 146, 60, 0.15);
+            border-color: var(--orange-primary);
+            box-shadow: 
+                0 4px 0 rgba(0, 0, 0, 0.3),
+                0 7px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .option-btn {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(251, 146, 60, 0.2);
+            transition: all 0.2s ease;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 2px 0 rgba(0, 0, 0, 0.2),
+                0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-btn:hover, .option-btn:active {
+            border-color: var(--orange-primary);
+            background: rgba(251, 146, 60, 0.12);
+            transform: translateY(-1px);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.2),
+                0 5px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Exercise Cards with 3D */
+        .exercise-card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(251, 146, 60, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 5px 0 rgba(0, 0, 0, 0.2),
+                0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .exercise-card.current {
+            border-color: var(--orange-primary);
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(251, 146, 60, 0.18));
+            animation: pulse-glow 2s infinite;
+            box-shadow: 
+                0 4px 0 rgba(251, 146, 60, 0.3),
+                0 6px 15px rgba(251, 146, 60, 0.25),
+                0 0 20px rgba(251, 146, 60, 0.1);
+        }
+        
+        .exercise-card.locked {
+            opacity: 0.4;
+            filter: grayscale(1);
+            pointer-events: none;
+        }
+        
+        .exercise-card.completed {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.12);
+            box-shadow: 
+                0 3px 0 rgba(16, 185, 129, 0.3),
+                0 5px 10px rgba(16, 185, 129, 0.15);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 
+                    0 4px 0 rgba(251, 146, 60, 0.3),
+                    0 6px 15px rgba(251, 146, 60, 0.25),
+                    0 0 20px rgba(251, 146, 60, 0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 4px 0 rgba(251, 146, 60, 0.3),
+                    0 6px 20px rgba(251, 146, 60, 0.35),
+                    0 0 25px rgba(251, 146, 60, 0.15);
+            }
+        }
+
+        /* Progress Bar with 3D */
+        .progress-bar {
+            background: linear-gradient(90deg, var(--orange-secondary), var(--orange-primary));
+            background-size: 200% auto;
+            animation: shine 2s linear infinite;
+            height: 8px;
+            border-radius: 10px;
+            box-shadow: 
+                0 2px 0 rgba(251, 146, 60, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-bar-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.5),
+                0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Badges with 3D */
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+        }
+        
+        .badge-orange {
+            background: linear-gradient(135deg, var(--orange-secondary), var(--orange-primary));
+            color: white;
+            box-shadow: 
+                0 3px 0 var(--orange-dark),
+                0 5px 10px rgba(251, 146, 60, 0.2);
+        }
+
+        /* Video Container - Custom Player with 3D - 16:9 Aspect Ratio */
+        .video-container {
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--orange-primary);
+            position: relative;
+            box-shadow: 
+                0 8px 0 rgba(0, 0, 0, 0.4),
+                0 15px 30px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(251, 146, 60, 0.2);
+        }
+
+        /* 16:9 Aspect Ratio Container */
+        .aspect-ratio-16-9 {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625) */
+        }
+
+        .aspect-ratio-16-9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Category Tags with 3D */
+        .category-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: rgba(251, 146, 60, 0.2);
+            color: var(--orange-light);
+            border: 1px solid rgba(251, 146, 60, 0.4);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 2px 0 rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Solution Highlight with 3D */
+        .solution-highlight {
+            background: linear-gradient(90deg, rgba(251, 146, 60, 0.2), transparent);
+            border-left: 3px solid var(--orange-primary);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Safe Areas */
+        .safe-area-top { padding-top: env(safe-area-inset-top); }
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Exercise Status with 3D */
+        .exercise-status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .status-current { 
+            background: rgba(251, 146, 60, 0.25); 
+            color: var(--orange-light); 
+            box-shadow: 0 2px 0 rgba(251, 146, 60, 0.3);
+        }
+        .status-completed { 
+            background: rgba(16, 185, 129, 0.25); 
+            color: #10B981; 
+            box-shadow: 0 2px 0 rgba(16, 185, 129, 0.3);
+        }
+
+        /* Number Indicators with 3D */
+        .number-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.3),
+                0 5px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .number-current {
+            background: linear-gradient(135deg, var(--orange-secondary), var(--orange-primary));
+            color: white;
+            animation: pulse 2s infinite;
+            box-shadow: 
+                0 3px 0 var(--orange-dark),
+                0 5px 10px rgba(251, 146, 60, 0.3);
+        }
+        
+        .number-completed {
+            background: #10B981;
+            color: white;
+            box-shadow: 
+                0 3px 0 #0A8F6E,
+                0 5px 10px rgba(16, 185, 129, 0.3);
+        }
+        
+        .number-locked {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 2px 0 rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 3px 0 var(--orange-dark),
+                    0 5px 10px rgba(251, 146, 60, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 
+                    0 4px 0 var(--orange-dark),
+                    0 7px 15px rgba(251, 146, 60, 0.4);
+            }
+        }
+
+        /* Question Text with Enhanced Visibility */
+        .question-text {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 0 10px rgba(251, 146, 60, 0.2),
+                0 0 20px rgba(251, 146, 60, 0.1);
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+        
+        .hint-text {
+            text-shadow: 
+                0 1px 0 rgba(0, 0, 0, 0.5),
+                0 0 5px rgba(251, 146, 60, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section Labels */
+        .section-label {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(251, 146, 60, 0.1),
+                0 0 8px rgba(251, 146, 60, 0.2);
+            color: var(--orange-light);
+            letter-spacing: 0.08em;
+        }
+
+        /* Score Display with 3D */
+        .score-display {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(251, 146, 60, 0.15),
+                0 4px 0 rgba(251, 146, 60, 0.1),
+                0 0 15px rgba(251, 146, 60, 0.3);
+            font-weight: 900;
+        }
+
+        /* Responsive Backgrounds - Ensure visibility on mobile */
+        @media (max-width: 768px) {
+            .quiz-background,
+            .analysis-background,
+            .exercise-background,
+            .modal-background,
+            .question-popup-bg {
+                background-attachment: scroll;
+                opacity: 0.7 !important;
+            }
+            
+            /* Make sure background covers properly on mobile */
+            .quiz-background::before,
+            .analysis-background::before,
+            .exercise-background::before,
+            .modal-background::before,
+            .question-popup-bg::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.3);
+                z-index: -1;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--orange-secondary), var(--orange-primary));
+            border-radius: 10px;
+        }
+
+        /* Header Logo Glow */
+        .logo-glow {
+            filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.3))
+                    drop-shadow(0 0 20px rgba(251, 146, 60, 0.2))
+                    drop-shadow(0 0 30px rgba(251, 146, 60, 0.1));
+        }
+
+        /* Glass Effect for Cards */
+        .glass-effect {
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ensure text is readable on background */
+        .text-on-bg {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Question Popup Container */
+        .question-popup-container {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(251, 146, 60, 0.25);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.9),
+                0 0 24px rgba(251, 146, 60, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+        }
+
+        /* Enhanced vertical scrolling */
+        .scrollable-content {
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Exercise list with better scrolling */
+        .exercise-list-container {
+            max-height: 50vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-0">
+    <!-- Background Layers - All with 70% opacity -->
+    <div class="background-layer"></div>
+    <div class="quiz-background" id="quiz-bg"></div>
+    <div class="analysis-background hidden" id="analysis-bg"></div>
+    <div class="exercise-background hidden" id="exercise-bg"></div>
+    
+    <div class="w-full min-h-screen safe-area-top safe-area-bottom flex items-center justify-center px-3 text-on-bg">
+        <div class="w-full max-w-md main-container rounded-xl p-4 fade-in">
+            
+            <!-- Header -->
+            <header class="text-center mb-6">
+                <div class="flex justify-center mb-4">
+                    
+                </div>
+                <h1 class="text-2xl font-black text-3d-orange mb-2 tracking-tight">CALISTHENIC PRO</h1>
+                <p class="text-xs text-orange-light/80 font-bold uppercase tracking-wider text-3d-secondary">BODYWEIGHT MASTERY SYSTEM</p>
+            </header>
+
+            <!-- Main Content - Scrollable Area -->
+            <div class="scrollable-content custom-scrollbar">
+                <main id="app-content" class="mb-4">
+                    <!-- Progress -->
+                    <div id="progress-section" class="mb-5">
+                        <div class="flex justify-between items-center mb-2">
+                            <span id="step-label" class="text-xs font-bold section-label uppercase tracking-wider">Skill Assessment</span>
+                            <span id="question-counter" class="text-xs font-bold text-orange-light text-3d-secondary">1/50</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div id="progress-bar" class="progress-bar w-5"></div>
+                        </div>
+                        <p id="progress-text" class="text-xs text-gray-300 mt-1.5 text-center text-3d-secondary">Comprehensive bodyweight skill evaluation...</p>
+                    </div>
+
+                    <!-- Quiz Section -->
+                    <div id="quiz-section" class="fade-in">
+                        <div class="mb-5">
+                            <h2 id="question-text" class="text-lg font-bold question-text mb-3"></h2>
+                            <p id="question-hint" class="text-xs hint-text hidden"></p>
+                        </div>
+                        <div id="options-container" class="space-y-2.5"></div>
+                        <div id="custom-input-container" class="hidden mt-3 space-y-2">
+                            <textarea id="custom-input" rows="2" class="w-full bg-black/50 border border-orange-primary/30 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary/30 glass-effect" placeholder="Please provide details..."></textarea>
+                            <div class="flex gap-2">
+                                <button onclick="submitCustomAnswer()" class="flex-1 orange-btn py-3 rounded-lg text-sm font-bold">Submit</button>
+                                <button onclick="showCurrentQuestion()" class="py-3 px-4 bg-black/50 border border-orange-primary/30 text-orange-primary rounded-lg text-sm font-bold">Back</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Section -->
+                    <div id="analysis-section" class="hidden">
+                        <div class="text-center mb-5">
+                            <h2 class="text-xl font-black text-3d-orange mb-2">Assessment Complete!</h2>
+                            <p class="text-xs text-orange-light/80 font-bold mb-4 text-3d-secondary">Your Personalized Calisthenic Profile</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-3 mb-4">
+                            <div class="glass-effect p-4 rounded-lg border border-orange-primary/15 text-center">
+                                <div class="text-xs uppercase text-gray-400 mb-2 text-3d-secondary">Primary Focus</div>
+                                <div id="focus-score" class="text-lg font-black score-display">--</div>
+                            </div>
+                            <div class="glass-effect p-4 rounded-lg border border-orange-primary/15 text-center">
+                                <div class="text-xs uppercase text-gray-400 mb-2 text-3d-secondary">Skill Level</div>
+                                <div id="urgency-score" class="text-lg font-black score-display">--</div>
+                            </div>
+                            <div class="glass-effect p-4 rounded-lg border border-orange-primary/15 text-center">
+                                <div class="text-xs uppercase text-gray-400 mb-2 text-3d-secondary">Program Length</div>
+                                <div id="program-score" class="text-lg font-black score-display">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect p-4 rounded-lg border border-orange-primary/15 mb-5 solution-highlight">
+                            <h3 class="text-sm font-bold text-white mb-2 flex items-center text-3d-white">
+                                <i class="fas fa-dumbbell text-orange-primary mr-2"></i> Calisthenic Skill Plan
+                            </h3>
+                            <p id="analysis-text" class="text-sm text-gray-300 leading-relaxed text-3d-secondary">
+                                Analyzing your 50-point assessment for precise skill progression...
+                            </p>
+                            <div id="solution-points" class="mt-3 space-y-2"></div>
+                        </div>
+                        
+                        <button onclick="showExercisePlan()" class="w-full orange-btn py-3.5 rounded-lg text-sm font-bold">
+                            <i class="fas fa-clipboard-check mr-2"></i> View Skill Progression
+                        </button>
+                    </div>
+
+                    <!-- Exercise Plan Section -->
+                    <div id="exercise-section" class="hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h2 class="text-lg font-bold text-3d-white mb-1.5">Skill Progression</h2>
+                                <div class="flex items-center">
+                                    <span class="badge badge-orange mr-2">Day <span id="current-day">1</span>/30</span>
+                                    <span id="completion-stats" class="text-xs text-gray-400 text-3d-secondary">0/6 completed</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-orange-primary animate-pulse"></div>
+                                    <span class="text-xs text-orange-primary font-bold text-3d-secondary">Current</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 p-3.5 bg-gradient-to-r from-black/50 to-orange-primary/10 rounded-lg border border-orange-primary/15 glass-effect">
+                            <h3 class="text-sm font-bold text-white mb-1.5 flex items-center text-3d-white">
+                                <i class="fas fa-running text-orange-primary mr-2"></i> Progression Rules
+                            </h3>
+                            <p class="text-xs text-gray-300 text-3d-secondary">Master skills in prescribed order. Watch each video fully before proceeding.</p>
+                        </div>
+                        
+                        <div id="exercise-list" class="exercise-list-container space-y-3 pr-1.5 pb-2 custom-scrollbar"></div>
+                        
+                        <button onclick="restartAssessment()" class="w-full mt-4 py-3 bg-black/50 border border-orange-primary/30 text-orange-primary rounded-lg text-sm font-bold glass-effect">
+                            <i class="fas fa-redo mr-2"></i> New Assessment
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Popup Modal -->
+    <div id="question-popup-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
+        <!-- Question Popup Background -->
+        <div class="question-popup-bg"></div>
+        
+        <div class="w-full max-w-md z-10">
+            <div class="question-popup-container p-4">
+                <div class="text-center mb-4">
+                    <h2 class="text-xl font-black text-3d-orange mb-2">Skill Assessment</h2>
+                    <p class="text-xs text-orange-light/80 font-bold mb-3 text-3d-secondary">Question <span id="popup-question-number">1</span> of 50</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h3 id="popup-question-text" class="text-lg font-bold question-text mb-3"></h3>
+                    <p id="popup-question-hint" class="text-xs hint-text hidden"></p>
+                </div>
+                
+                <div id="popup-options-container" class="space-y-2.5 mb-4"></div>
+                
+                <div id="popup-custom-input-container" class="hidden mt-3 space-y-2">
+                    <textarea id="popup-custom-input" rows="2" class="w-full bg-black/50 border border-orange-primary/30 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary/30 glass-effect" placeholder="Please provide details..."></textarea>
+                    <div class="flex gap-2">
+                        <button onclick="submitPopupCustomAnswer()" class="flex-1 orange-btn py-3 rounded-lg text-sm font-bold">Submit</button>
+                        <button onclick="closeQuestionPopup()" class="py-3 px-4 bg-black/50 border border-orange-primary/30 text-orange-primary rounded-lg text-sm font-bold">Cancel</button>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2">
+                    <button onclick="closeQuestionPopup()" class="flex-1 secondary-btn py-3 rounded-lg text-sm font-bold">
+                        <i class="fas fa-times mr-1.5"></i> Close
+                    </button>
+                    <button onclick="nextQuestionFromPopup()" class="flex-1 orange-btn py-3 rounded-lg text-sm font-bold">
+                        Next <i class="fas fa-arrow-right ml-1.5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal with Next Button - VERTICALLY CENTERED -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden flex flex-col items-center justify-center p-3">
+        <!-- Modal Background -->
+        <div class="modal-background"></div>
+        
+        <!-- Vertical Centering Container -->
+        <div class="flex-1 flex flex-col items-center justify-center w-full">
+            <div class="w-full max-w-md z-10 text-on-bg">
+                <div class="video-container">
+                    <div class="relative">
+                        <button onclick="closeVideoModal()" class="absolute top-3 right-3 z-20 bg-black/90 p-2.5 rounded-full border border-orange-primary/20">
+                            <i class="fas fa-times text-white text-sm"></i>
+                        </button>
+                        <!-- 16:9 Aspect Ratio Container -->
+                        <div class="aspect-ratio-16-9" id="video-frame">
+                            <!-- YouTube iframe will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-4 bg-black/95 rounded-lg border border-orange-primary/20 glass-effect">
+                    <h3 id="video-title" class="text-sm font-bold text-white mb-2 text-3d-white"></h3>
+                    <p id="video-description" class="text-xs text-gray-300 mb-3 text-3d-secondary"></p>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mb-4">
+                        <span class="flex items-center"><i class="fas fa-clock mr-1.5"></i> Duration: <span id="video-duration" class="font-bold ml-1">2:30</span></span>
+                        <span class="flex items-center"><i class="fas fa-redo mr-1.5"></i> Sets: <span id="video-reps" class="font-bold ml-1">3x10</span></span>
+                        <span class="category-tag" id="video-category"></span>
+                    </div>
+                    
+                    <div id="solution-benefit" class="mb-4 p-3 rounded bg-black/60 border border-orange-primary/15">
+                        <div class="flex items-center mb-1.5">
+                            <i class="fas fa-lightbulb text-orange-primary mr-2"></i>
+                            <span class="text-xs font-bold text-orange-light text-3d-secondary">Skill Benefit:</span>
+                        </div>
+                        <p id="solution-text" class="text-xs text-gray-300 text-3d-secondary"></p>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button onclick="repeatCurrentVideo()" class="flex-1 secondary-btn py-3 rounded-lg text-sm font-bold">
+                            <i class="fas fa-redo mr-1.5"></i> Repeat
+                        </button>
+                        <button onclick="nextVideo()" class="flex-1 orange-btn py-3 rounded-lg text-sm font-bold">
+                            Next <i class="fas fa-arrow-right ml-1.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // ==================== STATE MANAGEMENT ====================
+    let appState = {
+        currentQuestion: 0,
+        gender: null,
+        age: null,
+        primaryGoal: null,
+        skillLevel: null,
+        experience: null,
+        limitations: [],
+        scores: { strength: 0, endurance: 0, mobility: 0, skill: 0, flexibility: 0, balance: 0 },
+        currentDay: 1,
+        completedExercises: [],
+        totalQuestions: 50,
+        selectedCategory: null,
+        selectedExercises: [],
+        currentVideoIndex: 0,
+        userProfile: {},
+        dayProgress: {},
+        dayExercises: {}
+    };
+
+    // ==================== COMPREHENSIVE CALISTHENICS EXERCISE LIBRARY ====================
+    const exerciseLibrary = {
+        // 1️⃣ FUNDAMENTAL MOVEMENTS (15 exercises)
+        fundamental: [
+            {
+                id: "F1",
+                name: "Push-up",
+                description: "Basic upper body pushing movement",
+                category: "fundamental",
+                subcategory: "pushing",
+                difficulty: "beginner",
+                duration: "4:30",
+                reps: "3 sets × 10-15",
+                videoCode: "IODxDxX7oi4",
+                benefit: "Chest, shoulders, triceps strength",
+                solution: "Foundation for all pushing movements",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "F2",
+                name: "Pull-up",
+                description: "Basic upper body pulling movement",
+                category: "fundamental",
+                subcategory: "pulling",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "3 sets × max reps",
+                videoCode: "eGo4IYlbE5g",
+                benefit: "Back, biceps, grip strength",
+                solution: "Foundation for all pulling movements",
+                gender: "both",
+                equipment: ["pull-up bar"]
+            },
+            {
+                id: "F3",
+                name: "Bodyweight Squat",
+                description: "Basic lower body movement",
+                category: "fundamental",
+                subcategory: "legs",
+                difficulty: "beginner",
+                duration: "3:45",
+                reps: "3 sets × 15-20",
+                videoCode: "aclHkVaku9U",
+                benefit: "Leg strength, mobility",
+                solution: "Foundation for leg development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "F4",
+                name: "Plank",
+                description: "Core stability hold",
+                category: "fundamental",
+                subcategory: "core",
+                difficulty: "beginner",
+                duration: "4:00",
+                reps: "3 holds × 60s",
+                videoCode: "pSHjTRCQxIw",
+                benefit: "Core strength, posture",
+                solution: "Foundation for core stability",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "F5",
+                name: "Dips",
+                description: "Vertical pushing movement",
+                category: "fundamental",
+                subcategory: "pushing",
+                difficulty: "intermediate",
+                duration: "4:15",
+                reps: "3 sets × 8-12",
+                videoCode: "2z8JmcrW-As",
+                benefit: "Chest, triceps, shoulder development",
+                solution: "Advanced pushing foundation",
+                gender: "both",
+                equipment: ["parallel bars", "chairs"]
+            },
+            {
+                id: "F6",
+                name: "Inverted Row",
+                description: "Horizontal pulling movement",
+                category: "fundamental",
+                subcategory: "pulling",
+                difficulty: "beginner",
+                duration: "4:30",
+                reps: "3 sets × 10-15",
+                videoCode: "GRjR0FwYBW0",
+                benefit: "Back strength, posture improvement",
+                solution: "Progression to pull-ups",
+                gender: "both",
+                equipment: ["table", "bar"]
+            },
+            {
+                id: "F7",
+                name: "Lunges",
+                description: "Unilateral leg movement",
+                category: "fundamental",
+                subcategory: "legs",
+                difficulty: "beginner",
+                duration: "4:00",
+                reps: "3 sets × 10 each leg",
+                videoCode: "QOVaHwm-Q6U",
+                benefit: "Leg strength, balance, coordination",
+                solution: "Balance development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "F8",
+                name: "Glute Bridge",
+                description: "Posterior chain activation",
+                category: "fundamental",
+                subcategory: "legs",
+                difficulty: "beginner",
+                duration: "3:30",
+                reps: "3 sets × 15",
+                videoCode: "8bb7R8Xl-zA",
+                benefit: "Glute activation, hip mobility",
+                solution: "Hip extension foundation",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "F9",
+                name: "Mountain Climbers",
+                description: "Dynamic core cardio",
+                category: "fundamental",
+                subcategory: "core",
+                difficulty: "beginner",
+                duration: "3:45",
+                reps: "3 sets × 30s",
+                videoCode: "nmwgirgXLYM",
+                benefit: "Core strength, cardiovascular",
+                solution: "Dynamic core training",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "F10",
+                name: "Burpees",
+                description: "Full body explosive movement",
+                category: "fundamental",
+                subcategory: "full-body",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "3 sets × 10",
+                videoCode: "TU8hY5GqJgU",
+                benefit: "Total body conditioning",
+                solution: "Full body coordination",
+                gender: "both",
+                equipment: ["none"]
+            }
+        ],
+
+        // 2️⃣ SKILL PROGRESSIONS (12 exercises)
+        skill: [
+            {
+                id: "S1",
+                name: "Handstand Practice",
+                description: "Inversion skill development",
+                category: "skill",
+                subcategory: "inversion",
+                difficulty: "intermediate",
+                duration: "8:00",
+                reps: "5 attempts × 30s hold",
+                videoCode: "hD7kLZGA7Ww",
+                benefit: "Shoulder strength, balance, body awareness",
+                solution: "Foundation for advanced skills",
+                gender: "both",
+                equipment: ["wall"]
+            },
+            {
+                id: "S2",
+                name: "L-sit Progression",
+                description: "Core compression skill",
+                category: "skill",
+                subcategory: "core",
+                difficulty: "intermediate",
+                duration: "6:00",
+                reps: "5 holds × 15s",
+                videoCode: "41N6bKO8bqI",
+                benefit: "Core strength, hip flexor strength",
+                solution: "Compression strength development",
+                gender: "both",
+                equipment: ["parallel bars", "floor"]
+            },
+            {
+                id: "S3",
+                name: "Muscle-up Prep",
+                description: "Transition skill training",
+                category: "skill",
+                subcategory: "transition",
+                difficulty: "advanced",
+                duration: "10:00",
+                reps: "5 attempts",
+                videoCode: "4l5vU5H8FkE",
+                benefit: "Upper body strength, coordination",
+                solution: "Advanced pulling progression",
+                gender: "both",
+                equipment: ["pull-up bar"]
+            },
+            {
+                id: "S4",
+                name: "Planche Lean",
+                description: "Planche foundation",
+                category: "skill",
+                subcategory: "planche",
+                difficulty: "intermediate",
+                duration: "7:00",
+                reps: "5 holds × 20s",
+                videoCode: "VSp2Iz7tWyA",
+                benefit: "Shoulder strength, core tension",
+                solution: "Planche progression start",
+                gender: "both",
+                equipment: ["floor"]
+            },
+            {
+                id: "S5",
+                name: "Front Lever Prep",
+                description: "Front lever foundation",
+                category: "skill",
+                subcategory: "lever",
+                difficulty: "intermediate",
+                duration: "8:00",
+                reps: "5 holds × 15s",
+                videoCode: "q1TZ0C6DrkM",
+                benefit: "Back strength, core tension",
+                solution: "Front lever progression",
+                gender: "both",
+                equipment: ["pull-up bar"]
+            },
+            {
+                id: "S6",
+                name: "Back Lever Prep",
+                description: "Back lever foundation",
+                category: "skill",
+                subcategory: "lever",
+                difficulty: "intermediate",
+                duration: "8:00",
+                reps: "5 holds × 15s",
+                videoCode: "CBBum4pOqw8",
+                benefit: "Shoulder strength, back tension",
+                solution: "Back lever progression",
+                gender: "both",
+                equipment: ["pull-up bar"]
+            },
+            {
+                id: "S7",
+                name: "Human Flag Prep",
+                description: "Human flag foundation",
+                category: "skill",
+                subcategory: "flag",
+                difficulty: "advanced",
+                duration: "9:00",
+                reps: "5 holds × 10s each side",
+                videoCode: "9F6yCA-5HjA",
+                benefit: "Side core strength, grip strength",
+                solution: "Human flag progression",
+                gender: "both",
+                equipment: ["vertical pole"]
+            },
+            {
+                id: "S8",
+                name: "Handstand Push-up Prep",
+                description: "Vertical pushing strength",
+                category: "skill",
+                subcategory: "inversion",
+                difficulty: "advanced",
+                duration: "7:00",
+                reps: "5 sets × 5 reps",
+                videoCode: "Iwy6R1AYHkE",
+                benefit: "Shoulder strength, balance",
+                solution: "Handstand push-up progression",
+                gender: "both",
+                equipment: ["wall"]
+            },
+            {
+                id: "S9",
+                name: "Dragon Flag Prep",
+                description: "Advanced core strength",
+                category: "skill",
+                subcategory: "core",
+                difficulty: "advanced",
+                duration: "6:00",
+                reps: "5 holds × 10s",
+                videoCode: "nZZ3q4E70Qg",
+                benefit: "Core strength, body control",
+                solution: "Dragon flag progression",
+                gender: "both",
+                equipment: ["bench", "pole"]
+            },
+            {
+                id: "S10",
+                name: "Pistol Squat Prep",
+                description: "Single leg strength",
+                category: "skill",
+                subcategory: "legs",
+                difficulty: "intermediate",
+                duration: "7:00",
+                reps: "3 sets × 5 each leg",
+                videoCode: "1G0O7X3jRqU",
+                benefit: "Leg strength, balance, mobility",
+                solution: "Pistol squat progression",
+                gender: "both",
+                equipment: ["none"]
+            }
+        ],
+
+        // 3️⃣ MOBILITY & FLEXIBILITY (10 exercises)
+        mobility: [
+            {
+                id: "M1",
+                name: "Wrist Mobility",
+                description: "Wrist prep for handstands",
+                category: "mobility",
+                subcategory: "wrist",
+                difficulty: "beginner",
+                duration: "5:00",
+                reps: "Complete routine",
+                videoCode: "mSZWSQSSJXE",
+                benefit: "Wrist health, injury prevention",
+                solution: "Essential for hand balancing",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "M2",
+                name: "Shoulder Mobility",
+                description: "Shoulder prep for skills",
+                category: "mobility",
+                subcategory: "shoulder",
+                difficulty: "beginner",
+                duration: "6:00",
+                reps: "Complete routine",
+                videoCode: "zGgC4dqR_ZQ",
+                benefit: "Shoulder health, range of motion",
+                solution: "Essential for all upper body skills",
+                gender: "both",
+                equipment: ["resistance band"]
+            },
+            {
+                id: "M3",
+                name: "Hip Mobility",
+                description: "Hip flexibility routine",
+                category: "mobility",
+                subcategory: "hip",
+                difficulty: "beginner",
+                duration: "7:00",
+                reps: "Complete routine",
+                videoCode: "GiLAD7j1RDE",
+                benefit: "Hip flexibility, squat depth",
+                solution: "Essential for leg movements",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "M4",
+                name: "Thoracic Mobility",
+                description: "Upper back mobility",
+                category: "mobility",
+                subcategory: "spine",
+                difficulty: "beginner",
+                duration: "6:00",
+                reps: "Complete routine",
+                videoCode: "X5JwC4zNrq4",
+                benefit: "Improved posture, back health",
+                solution: "Essential for overhead movements",
+                gender: "both",
+                equipment: ["foam roller"]
+            },
+            {
+                id: "M5",
+                name: "Full Body Flow",
+                description: "Dynamic mobility routine",
+                category: "mobility",
+                subcategory: "full-body",
+                difficulty: "beginner",
+                duration: "8:00",
+                reps: "Complete flow",
+                videoCode: "7IYwXoKqV7Q",
+                benefit: "Total body mobility, warm-up",
+                solution: "Pre-workout mobility",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "M6",
+                name: "Pancake Stretch",
+                description: "Middle split flexibility",
+                category: "mobility",
+                subcategory: "legs",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "5 holds × 30s",
+                videoCode: "9F6yCA-5HjA",
+                benefit: "Inner thigh flexibility",
+                solution: "Middle split progression",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "M7",
+                name: "Bridge Progression",
+                description: "Backbend flexibility",
+                category: "mobility",
+                subcategory: "spine",
+                difficulty: "intermediate",
+                duration: "6:00",
+                reps: "5 holds × 20s",
+                videoCode: "3QnL1h8Jk4w",
+                benefit: "Spine flexibility, shoulder mobility",
+                solution: "Bridge progression",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "M8",
+                name: "Active Flexibility",
+                description: "Strength through range",
+                category: "mobility",
+                subcategory: "active",
+                difficulty: "intermediate",
+                duration: "7:00",
+                reps: "Complete routine",
+                videoCode: "KXzL7Qi7Q3M",
+                benefit: "Active range of motion",
+                solution: "Skill-specific mobility",
+                gender: "both",
+                equipment: ["none"]
+            }
+        ],
+
+        // 4️⃣ STRENGTH BUILDING (10 exercises)
+        strength: [
+            {
+                id: "ST1",
+                name: "Archer Push-up",
+                description: "Unilateral pushing strength",
+                category: "strength",
+                subcategory: "pushing",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "3 sets × 8 each side",
+                videoCode: "1G0O7X3jRqU",
+                benefit: "Chest strength, unilateral control",
+                solution: "Planche progression",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "ST2",
+                name: "Weighted Pull-up",
+                description: "Pulling strength with load",
+                category: "strength",
+                subcategory: "pulling",
+                difficulty: "advanced",
+                duration: "6:00",
+                reps: "3 sets × 5-8",
+                videoCode: "oJv5wZxKQ2M",
+                benefit: "Back strength, grip strength",
+                solution: "Advanced pulling strength",
+                gender: "both",
+                equipment: ["pull-up bar", "weight"]
+            },
+            {
+                id: "ST3",
+                name: "Pike Push-up",
+                description: "Vertical pushing strength",
+                category: "strength",
+                subcategory: "pushing",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "3 sets × 10-15",
+                videoCode: "Iwy6R1AYHkE",
+                benefit: "Shoulder strength, handstand prep",
+                solution: "Handstand push-up progression",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "ST4",
+                name: "Bodyweight Row Variations",
+                description: "Horizontal pulling strength",
+                category: "strength",
+                subcategory: "pulling",
+                difficulty: "intermediate",
+                duration: "6:00",
+                reps: "3 sets × 10-12",
+                videoCode: "GRjR0FwYBW0",
+                benefit: "Back thickness, bicep strength",
+                solution: "Front lever progression",
+                gender: "both",
+                equipment: ["bar", "rings"]
+            },
+            {
+                id: "ST5",
+                name: "Nordic Curl",
+                description: "Hamstring strength",
+                category: "strength",
+                subcategory: "legs",
+                difficulty: "advanced",
+                duration: "5:00",
+                reps: "3 sets × 5-8",
+                videoCode: "1Tq3QdYUuHs",
+                benefit: "Hamstring strength, knee health",
+                solution: "Advanced leg strength",
+                gender: "both",
+                equipment: ["partner", "anchor point"]
+            },
+            {
+                id: "ST6",
+                name: "Shrimp Squat",
+                description: "Single leg strength",
+                category: "strength",
+                subcategory: "legs",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "3 sets × 8 each leg",
+                videoCode: "L8fvypPrzzc",
+                benefit: "Leg strength, balance",
+                solution: "Pistol squat progression",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "ST7",
+                name: "Dragon Flag",
+                description: "Advanced core strength",
+                category: "strength",
+                subcategory: "core",
+                difficulty: "advanced",
+                duration: "6:00",
+                reps: "3 sets × 5-8",
+                videoCode: "nZZ3q4E70Qg",
+                benefit: "Core strength, body control",
+                solution: "Advanced core development",
+                gender: "both",
+                equipment: ["bench", "pole"]
+            },
+            {
+                id: "ST8",
+                name: "Front Lever Holds",
+                description: "Isometric back strength",
+                category: "strength",
+                subcategory: "pulling",
+                difficulty: "advanced",
+                duration: "7:00",
+                reps: "5 holds × 10s",
+                videoCode: "q1TZ0C6DrkM",
+                benefit: "Back strength, core tension",
+                solution: "Front lever strength",
+                gender: "both",
+                equipment: ["pull-up bar"]
+            }
+        ],
+
+        // 5️⃣ ENDURANCE & CONDITIONING (10 exercises)
+        endurance: [
+            {
+                id: "E1",
+                name: "High Rep Push-ups",
+                description: "Pushing endurance",
+                category: "endurance",
+                subcategory: "pushing",
+                difficulty: "beginner",
+                duration: "6:00",
+                reps: "100 total reps",
+                videoCode: "IODxDxX7oi4",
+                benefit: "Chest endurance, mental toughness",
+                solution: "Pushing endurance development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "E2",
+                name: "Pull-up Endurance",
+                description: "Pulling endurance",
+                category: "endurance",
+                subcategory: "pulling",
+                difficulty: "intermediate",
+                duration: "8:00",
+                reps: "50 total reps",
+                videoCode: "eGo4IYlbE5g",
+                benefit: "Back endurance, grip endurance",
+                solution: "Pulling endurance development",
+                gender: "both",
+                equipment: ["pull-up bar"]
+            },
+            {
+                id: "E3",
+                name: "Circuit Training",
+                description: "Full body conditioning",
+                category: "endurance",
+                subcategory: "full-body",
+                difficulty: "intermediate",
+                duration: "15:00",
+                reps: "3 rounds circuit",
+                videoCode: "TU8hY5GqJgU",
+                benefit: "Total body endurance, cardiovascular",
+                solution: "General conditioning",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "E4",
+                name: "EMOM Workout",
+                description: "Every minute on the minute",
+                category: "endurance",
+                subcategory: "interval",
+                difficulty: "intermediate",
+                duration: "10:00",
+                reps: "10 minutes EMOM",
+                videoCode: "nmwgirgXLYM",
+                benefit: "Work capacity, pacing",
+                solution: "Interval conditioning",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "E5",
+                name: "Tabata Protocol",
+                description: "High intensity intervals",
+                category: "endurance",
+                subcategory: "hiit",
+                difficulty: "advanced",
+                duration: "8:00",
+                reps: "8 rounds Tabata",
+                videoCode: "1BZM2Vre5oc",
+                benefit: "Anaerobic capacity, fat burning",
+                solution: "High intensity conditioning",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "E6",
+                name: "AMRAP Challenge",
+                description: "As many rounds as possible",
+                category: "endurance",
+                subcategory: "amrap",
+                difficulty: "intermediate",
+                duration: "12:00",
+                reps: "12 minute AMRAP",
+                videoCode: "41N6bKO8bqI",
+                benefit: "Work capacity, mental endurance",
+                solution: "Work capacity development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "E7",
+                name: "Core Endurance",
+                description: "Core circuit",
+                category: "endurance",
+                subcategory: "core",
+                difficulty: "beginner",
+                duration: "10:00",
+                reps: "Core circuit",
+                videoCode: "pSHjTRCQxIw",
+                benefit: "Core endurance, stability",
+                solution: "Core endurance development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "E8",
+                name: "Leg Endurance",
+                description: "High rep leg work",
+                category: "endurance",
+                subcategory: "legs",
+                difficulty: "intermediate",
+                duration: "8:00",
+                reps: "200 squats total",
+                videoCode: "aclHkVaku9U",
+                benefit: "Leg endurance, mental toughness",
+                solution: "Leg endurance development",
+                gender: "both",
+                equipment: ["none"]
+            }
+        ],
+
+        // 6️⃣ BODYWEIGHT FLOW (8 exercises)
+        flow: [
+            {
+                id: "FL1",
+                name: "Animal Flow",
+                description: "Primal movement patterns",
+                category: "flow",
+                subcategory: "ground",
+                difficulty: "intermediate",
+                duration: "8:00",
+                reps: "Flow sequence",
+                videoCode: "VSp2Iz7tWyA",
+                benefit: "Mobility, coordination, strength",
+                solution: "Movement quality development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "FL2",
+                name: "Freestyle Movement",
+                description: "Creative bodyweight flow",
+                category: "flow",
+                subcategory: "creative",
+                difficulty: "intermediate",
+                duration: "7:00",
+                reps: "Flow sequence",
+                videoCode: "CBBum4pOqw8",
+                benefit: "Creativity, body awareness",
+                solution: "Movement creativity",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "FL3",
+                name: "Transition Drills",
+                description: "Skill transitions practice",
+                category: "flow",
+                subcategory: "transition",
+                difficulty: "advanced",
+                duration: "9:00",
+                reps: "Transition practice",
+                videoCode: "4l5vU5H8FkE",
+                benefit: "Skill linking, coordination",
+                solution: "Skill combination development",
+                gender: "both",
+                equipment: ["floor", "bars"]
+            },
+            {
+                id: "FL4",
+                name: "Balance Flow",
+                description: "Balance and stability",
+                category: "flow",
+                subcategory: "balance",
+                difficulty: "intermediate",
+                duration: "6:00",
+                reps: "Balance sequence",
+                videoCode: "9F6yCA-5HjA",
+                benefit: "Balance, proprioception",
+                solution: "Balance development",
+                gender: "both",
+                equipment: ["none"]
+            }
+        ],
+
+        // 7️⃣ RECOVERY & REGENERATION (8 exercises)
+        recovery: [
+            {
+                id: "R1",
+                name: "Self-Massage",
+                description: "Myofascial release",
+                category: "recovery",
+                subcategory: "massage",
+                difficulty: "beginner",
+                duration: "10:00",
+                reps: "Full body routine",
+                videoCode: "BQP3X8kPv6g",
+                benefit: "Muscle recovery, pain reduction",
+                solution: "Post-workout recovery",
+                gender: "both",
+                equipment: ["foam roller", "ball"]
+            },
+            {
+                id: "R2",
+                name: "Static Stretching",
+                description: "Flexibility development",
+                category: "recovery",
+                subcategory: "stretching",
+                difficulty: "beginner",
+                duration: "12:00",
+                reps: "Full body stretch",
+                videoCode: "4vTJ5UBfBuQ",
+                benefit: "Flexibility, relaxation",
+                solution: "Flexibility development",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "R3",
+                name: "Breathing Practice",
+                description: "Diaphragmatic breathing",
+                category: "recovery",
+                subcategory: "breathing",
+                difficulty: "beginner",
+                duration: "5:00",
+                reps: "10 breath cycles",
+                videoCode: "tEmXopd4u3k",
+                benefit: "Stress reduction, recovery",
+                solution: "Nervous system regulation",
+                gender: "both",
+                equipment: ["none"]
+            },
+            {
+                id: "R4",
+                name: "Active Recovery",
+                description: "Light movement",
+                category: "recovery",
+                subcategory: "active",
+                difficulty: "beginner",
+                duration: "15:00",
+                reps: "Gentle movement",
+                videoCode: "7IYwXoKqV7Q",
+                benefit: "Blood flow, recovery",
+                solution: "Active recovery method",
+                gender: "both",
+                equipment: ["none"]
+            }
+        ]
+    };
+
+    // ==================== COMPREHENSIVE 50 QUESTIONS FOR CALISTHENICS ====================
+    const questions = [
+        // Section 1: Personal & Demographic (5 questions)
+        {
+            id: 1,
+            text: "What is your gender?",
+            options: ["Male", "Female"],
+            category: "demographic",
+            scoreMap: { "Male": 0, "Female": 0 }
+        },
+        {
+            id: 2,
+            text: "What is your current age?",
+            options: ["Under 18", "18-24", "25-34", "35-44", "45-54", "55+"],
+            category: "demographic",
+            scoreMap: { "Under 18": 0, "18-24": 5, "25-34": 10, "35-44": 15, "45-54": 20, "55+": 25 }
+        },
+        {
+            id: 3,
+            text: "What is your current height?",
+            options: ["Under 5'0\"", "5'0\"-5'5\"", "5'6\"-5'11\"", "6'0\"-6'3\"", "Over 6'3\""],
+            category: "demographic",
+            scoreMap: { "Under 5'0\"": 0, "5'0\"-5'5\"": 5, "5'6\"-5'11\"": 10, "6'0\"-6'3\"": 15, "Over 6'3\"": 20 }
+        },
+        {
+            id: 4,
+            text: "What is your current weight?",
+            options: ["Under 120 lbs", "120-150 lbs", "151-180 lbs", "181-210 lbs", "211-250 lbs", "Over 250 lbs"],
+            category: "demographic",
+            scoreMap: { "Under 120 lbs": 0, "120-150 lbs": 5, "151-180 lbs": 10, "181-210 lbs": 15, "211-250 lbs": 20, "Over 250 lbs": 25 }
+        },
+        {
+            id: 5,
+            text: "Any chronic health conditions?",
+            options: ["None", "Joint issues", "Back problems", "Shoulder injuries", "Multiple conditions"],
+            category: "demographic",
+            scoreMap: { "None": 0, "Joint issues": 15, "Back problems": 20, "Shoulder injuries": 25, "Multiple conditions": 30 }
+        },
+
+        // Section 2: Calisthenics Goals & Motivation (10 questions)
+        {
+            id: 6,
+            text: "What is your primary calisthenics goal?",
+            options: ["Learn basic movements", "Build muscle", "Learn advanced skills", "Improve strength", "General fitness", "Competition"],
+            category: "goals",
+            scoreMap: { "Learn basic movements": 20, "Build muscle": 15, "Learn advanced skills": 10, "Improve strength": 5, "General fitness": 10, "Competition": 5 }
+        },
+        {
+            id: 7,
+            text: "Which skills interest you most?",
+            options: ["Handstands", "Muscle-ups", "Planche", "Front lever", "Human flag", "All skills"],
+            category: "goals",
+            scoreMap: { "Handstands": 10, "Muscle-ups": 15, "Planche": 20, "Front lever": 20, "Human flag": 25, "All skills": 30 }
+        },
+        {
+            id: 8,
+            text: "How motivated are you to learn?",
+            options: ["Extremely motivated", "Very motivated", "Moderately motivated", "Somewhat motivated", "Not very motivated"],
+            category: "goals",
+            scoreMap: { "Extremely motivated": 0, "Very motivated": 5, "Moderately motivated": 10, "Somewhat motivated": 15, "Not very motivated": 20 }
+        },
+        {
+            id: 9,
+            text: "Previous calisthenics experience?",
+            options: ["Never tried", "Beginner (0-6 months)", "Intermediate (6 months-2 years)", "Advanced (2-5 years)", "Expert (5+ years)"],
+            category: "experience",
+            scoreMap: { "Never tried": 25, "Beginner (0-6 months)": 15, "Intermediate (6 months-2 years)": 5, "Advanced (2-5 years)": 0, "Expert (5+ years)": 0 }
+        },
+        {
+            id: 10,
+            text: "Previous injuries to consider?",
+            options: ["None", "Wrist injuries", "Shoulder injuries", "Back injuries", "Multiple injuries"],
+            category: "experience",
+            scoreMap: { "None": 0, "Wrist injuries": 15, "Shoulder injuries": 20, "Back injuries": 25, "Multiple injuries": 30 }
+        },
+        {
+            id: 11,
+            text: "Time available for training?",
+            options: ["< 30 minutes", "30-45 minutes", "45-60 minutes", "60-90 minutes", "> 90 minutes"],
+            category: "goals",
+            scoreMap: { "< 30 minutes": 20, "30-45 minutes": 10, "45-60 minutes": 5, "60-90 minutes": 0, "> 90 minutes": 0 }
+        },
+        {
+            id: 12,
+            text: "Training frequency goal?",
+            options: ["1-2 times/week", "3 times/week", "4 times/week", "5 times/week", "6+ times/week"],
+            category: "goals",
+            scoreMap: { "1-2 times/week": 15, "3 times/week": 5, "4 times/week": 0, "5 times/week": 0, "6+ times/week": 5 }
+        },
+        {
+            id: 13,
+            text: "Training location preference?",
+            options: ["Home only", "Park/outdoor", "Gym", "Anywhere", "Specific calisthenics park"],
+            category: "goals",
+            scoreMap: { "Home only": 10, "Park/outdoor": 5, "Gym": 5, "Anywhere": 0, "Specific calisthenics park": 0 }
+        },
+        {
+            id: 14,
+            text: "Equipment access?",
+            options: ["None", "Pull-up bar", "Parallel bars", "Rings", "Full home setup"],
+            category: "goals",
+            scoreMap: { "None": 20, "Pull-up bar": 10, "Parallel bars": 5, "Rings": 5, "Full home setup": 0 }
+        },
+        {
+            id: 15,
+            text: "Training partner availability?",
+            options: ["Always train alone", "Sometimes with partner", "Regular training partner", "Group training", "Coach available"],
+            category: "goals",
+            scoreMap: { "Always train alone": 10, "Sometimes with partner": 5, "Regular training partner": 0, "Group training": 0, "Coach available": 0 }
+        },
+
+        // Section 3: Current Fitness Level (10 questions)
+        {
+            id: 16,
+            text: "Current activity level?",
+            options: ["Sedentary", "Lightly active", "Moderately active", "Very active", "Extremely active"],
+            category: "fitness",
+            scoreMap: { "Sedentary": 25, "Lightly active": 15, "Moderately active": 5, "Very active": 0, "Extremely active": 0 }
+        },
+        {
+            id: 17,
+            text: "Number of push-ups you can do?",
+            options: ["0-5", "6-10", "11-20", "21-30", "30+"],
+            category: "fitness",
+            scoreMap: { "0-5": 20, "6-10": 15, "11-20": 5, "21-30": 0, "30+": 0 }
+        },
+        {
+            id: 18,
+            text: "Number of pull-ups you can do?",
+            options: ["0", "1-3", "4-8", "9-15", "15+"],
+            category: "fitness",
+            scoreMap: { "0": 25, "1-3": 15, "4-8": 5, "9-15": 0, "15+": 0 }
+        },
+        {
+            id: 19,
+            text: "Hold a handstand against wall?",
+            options: ["Can't hold at all", "Few seconds", "30 seconds", "1 minute", "2+ minutes"],
+            category: "fitness",
+            scoreMap: { "Can't hold at all": 20, "Few seconds": 15, "30 seconds": 5, "1 minute": 0, "2+ minutes": 0 }
+        },
+        {
+            id: 20,
+            text: "Hold an L-sit?",
+            options: ["Can't hold at all", "Few seconds", "15 seconds", "30 seconds", "45+ seconds"],
+            category: "fitness",
+            scoreMap: { "Can't hold at all": 20, "Few seconds": 15, "15 seconds": 5, "30 seconds": 0, "45+ seconds": 0 }
+        },
+        {
+            id: 21,
+            text: "Flexibility level?",
+            options: ["Can't touch toes", "Just reach toes", "Palms on floor", "Very flexible", "Extremely flexible"],
+            category: "fitness",
+            scoreMap: { "Can't touch toes": 20, "Just reach toes": 15, "Palms on floor": 5, "Very flexible": 0, "Extremely flexible": 0 }
+        },
+        {
+            id: 22,
+            text: "Wrist mobility?",
+            options: ["Very stiff", "Some stiffness", "Average", "Good mobility", "Excellent mobility"],
+            category: "fitness",
+            scoreMap: { "Very stiff": 25, "Some stiffness": 15, "Average": 10, "Good mobility": 5, "Excellent mobility": 0 }
+        },
+        {
+            id: 23,
+            text: "Shoulder mobility?",
+            options: ["Very limited", "Some limitations", "Average", "Good mobility", "Excellent mobility"],
+            category: "fitness",
+            scoreMap: { "Very limited": 25, "Some limitations": 15, "Average": 10, "Good mobility": 5, "Excellent mobility": 0 }
+        },
+        {
+            id: 24,
+            text: "Core strength?",
+            options: ["Very weak", "Weak", "Average", "Strong", "Very strong"],
+            category: "fitness",
+            scoreMap: { "Very weak": 25, "Weak": 15, "Average": 10, "Strong": 5, "Very strong": 0 }
+        },
+        {
+            id: 25,
+            text: "Balance ability?",
+            options: ["Poor balance", "Average balance", "Good balance", "Very good balance", "Excellent balance"],
+            category: "fitness",
+            scoreMap: { "Poor balance": 20, "Average balance": 10, "Good balance": 5, "Very good balance": 0, "Excellent balance": 0 }
+        },
+
+        // Section 4: Nutrition & Recovery (10 questions)
+        {
+            id: 26,
+            text: "Current diet quality?",
+            options: ["Very poor", "Poor", "Average", "Good", "Excellent"],
+            category: "lifestyle",
+            scoreMap: { "Very poor": 25, "Poor": 15, "Average": 10, "Good": 5, "Excellent": 0 }
+        },
+        {
+            id: 27,
+            text: "Protein intake awareness?",
+            options: ["No idea", "Basic idea", "Some knowledge", "Good knowledge", "Expert knowledge"],
+            category: "lifestyle",
+            scoreMap: { "No idea": 20, "Basic idea": 15, "Some knowledge": 10, "Good knowledge": 5, "Expert knowledge": 0 }
+        },
+        {
+            id: 28,
+            text: "Water consumption daily?",
+            options: ["< 1 liter", "1-2 liters", "2-3 liters", "3-4 liters", "> 4 liters"],
+            category: "lifestyle",
+            scoreMap: { "< 1 liter": 20, "1-2 liters": 10, "2-3 liters": 5, "3-4 liters": 0, "> 4 liters": 0 }
+        },
+        {
+            id: 29,
+            text: "Sleep quality?",
+            options: ["Very poor", "Poor", "Average", "Good", "Excellent"],
+            category: "lifestyle",
+            scoreMap: { "Very poor": 25, "Poor": 15, "Average": 10, "Good": 5, "Excellent": 0 }
+        },
+        {
+            id: 30,
+            text: "Stress management?",
+            options: ["Very poor", "Poor", "Average", "Good", "Excellent"],
+            category: "lifestyle",
+            scoreMap: { "Very poor": 25, "Poor": 15, "Average": 10, "Good": 5, "Excellent": 0 }
+        },
+        {
+            id: 31,
+            text: "Recovery practices?",
+            options: ["None", "Occasional stretching", "Regular stretching", "Foam rolling", "Comprehensive recovery"],
+            category: "lifestyle",
+            scoreMap: { "None": 20, "Occasional stretching": 15, "Regular stretching": 5, "Foam rolling": 0, "Comprehensive recovery": 0 }
+        },
+        {
+            id: 32,
+            text: "Alcohol consumption?",
+            options: ["Daily", "Several times/week", "Weekly", "Occasionally", "Never"],
+            category: "lifestyle",
+            scoreMap: { "Daily": 25, "Several times/week": 20, "Weekly": 15, "Occasionally": 5, "Never": 0 }
+        },
+        {
+            id: 33,
+            text: "Smoking or vaping?",
+            options: ["Current smoker", "Former smoker", "Social smoker", "Vaper", "Never"],
+            category: "lifestyle",
+            scoreMap: { "Current smoker": 30, "Former smoker": 10, "Social smoker": 20, "Vaper": 25, "Never": 0 }
+        },
+        {
+            id: 34,
+            text: "Supplement usage?",
+            options: ["None", "Protein powder", "Creatine", "Multiple supplements", "Comprehensive regimen"],
+            category: "lifestyle",
+            scoreMap: { "None": 10, "Protein powder": 5, "Creatine": 5, "Multiple supplements": 0, "Comprehensive regimen": 0 }
+        },
+        {
+            id: 35,
+            text: "Meal timing consistency?",
+            options: ["Very inconsistent", "Somewhat inconsistent", "Average", "Consistent", "Very consistent"],
+            category: "lifestyle",
+            scoreMap: { "Very inconsistent": 20, "Somewhat inconsistent": 15, "Average": 10, "Consistent": 5, "Very consistent": 0 }
+        },
+
+        // Section 5: Equipment & Training Environment (5 questions)
+        {
+            id: 36,
+            text: "Pull-up bar access?",
+            options: ["No access", "Doorway pull-up bar", "Wall-mounted bar", "Outdoor bar", "Multiple bars"],
+            category: "equipment",
+            scoreMap: { "No access": 20, "Doorway pull-up bar": 10, "Wall-mounted bar": 5, "Outdoor bar": 0, "Multiple bars": 0 }
+        },
+        {
+            id: 37,
+            text: "Parallel bars access?",
+            options: ["No access", "Makeshift bars", "Park bars", "Home parallel bars", "Gym access"],
+            category: "equipment",
+            scoreMap: { "No access": 15, "Makeshift bars": 10, "Park bars": 5, "Home parallel bars": 0, "Gym access": 0 }
+        },
+        {
+            id: 38,
+            text: "Rings access?",
+            options: ["No access", "Can purchase", "Occasional access", "Regular access", "Own rings"],
+            category: "equipment",
+            scoreMap: { "No access": 10, "Can purchase": 5, "Occasional access": 5, "Regular access": 0, "Own rings": 0 }
+        },
+        {
+            id: 39,
+            text: "Floor space for training?",
+            options: ["No space", "Small space", "Moderate space", "Good space", "Large dedicated space"],
+            category: "equipment",
+            scoreMap: { "No space": 20, "Small space": 15, "Moderate space": 10, "Good space": 5, "Large dedicated space": 0 }
+        },
+        {
+            id: 40,
+            text: "Training surface?",
+            options: ["Hard floor", "Carpet", "Yoga mat", "Outdoor ground", "Gym flooring"],
+            category: "equipment",
+            scoreMap: { "Hard floor": 10, "Carpet": 5, "Yoga mat": 0, "Outdoor ground": 5, "Gym flooring": 0 }
+        },
+
+        // Section 6: Medical & Limitations (10 questions)
+        {
+            id: 41,
+            text: "Wrist pain or issues?",
+            options: ["None", "Occasional", "Frequent", "Chronic", "Severe"],
+            category: "medical",
+            scoreMap: { "None": 0, "Occasional": 10, "Frequent": 15, "Chronic": 20, "Severe": 25 }
+        },
+        {
+            id: 42,
+            text: "Shoulder pain or issues?",
+            options: ["None", "Occasional", "Frequent", "Chronic", "Severe"],
+            category: "medical",
+            scoreMap: { "None": 0, "Occasional": 15, "Frequent": 20, "Chronic": 25, "Severe": 30 }
+        },
+        {
+            id: 43,
+            text: "Elbow pain or issues?",
+            options: ["None", "Occasional", "Frequent", "Chronic", "Severe"],
+            category: "medical",
+            scoreMap: { "None": 0, "Occasional": 10, "Frequent": 15, "Chronic": 20, "Severe": 25 }
+        },
+        {
+            id: 44,
+            text: "Back pain or issues?",
+            options: ["None", "Occasional", "Frequent", "Chronic", "Severe"],
+            category: "medical",
+            scoreMap: { "None": 0, "Occasional": 15, "Frequent": 20, "Chronic": 25, "Severe": 30 }
+        },
+        {
+            id: 45,
+            text: "Joint hypermobility?",
+            options: ["None", "Slight", "Moderate", "Significant", "Severe"],
+            category: "medical",
+            scoreMap: { "None": 0, "Slight": 5, "Moderate": 10, "Significant": 15, "Severe": 20 }
+        },
+        {
+            id: 46,
+            text: "Previous fractures?",
+            options: ["None", "Minor", "Multiple", "Major", "Recent"],
+            category: "medical",
+            scoreMap: { "None": 0, "Minor": 10, "Multiple": 15, "Major": 20, "Recent": 25 }
+        },
+        {
+            id: 47,
+            text: "Tendonitis history?",
+            options: ["None", "Mild", "Moderate", "Severe", "Chronic"],
+            category: "medical",
+            scoreMap: { "None": 0, "Mild": 10, "Moderate": 15, "Severe": 20, "Chronic": 25 }
+        },
+        {
+            id: 48,
+            text: "Recent surgeries?",
+            options: ["None", "Minor surgery", "Major surgery <1 year", "Multiple surgeries", "Recent major surgery"],
+            category: "medical",
+            scoreMap: { "None": 0, "Minor surgery": 5, "Major surgery <1 year": 15, "Multiple surgeries": 20, "Recent major surgery": 25 }
+        },
+        {
+            id: 49,
+            text: "Medications affecting training?",
+            options: ["None", "Pain medications", "Anti-inflammatories", "Multiple medications", "Many medications"],
+            category: "medical",
+            scoreMap: { "None": 0, "Pain medications": 10, "Anti-inflammatories": 15, "Multiple medications": 20, "Many medications": 25 }
+        },
+        {
+            id: 50,
+            text: "Doctor clearance for calisthenics?",
+            options: ["Yes, cleared", "No, but healthy", "No, unsure", "No, not cleared", "Haven't asked"],
+            category: "medical",
+            scoreMap: { "Yes, cleared": 0, "No, but healthy": 5, "No, unsure": 15, "No, not cleared": 25, "Haven't asked": 20 }
+        }
+    ];
+
+    // ==================== UI FUNCTIONS ====================
+
+    function initApp() {
+        showQuestion();
+        setupEventListeners();
+        // Show quiz background by default
+        document.getElementById('quiz-bg').classList.remove('hidden');
+    }
+
+    function showQuestion() {
+        if (appState.currentQuestion >= appState.totalQuestions) {
+            generatePersonalizedProgram();
+            return;
+        }
+        
+        const question = questions[appState.currentQuestion];
+        document.getElementById('question-text').textContent = question.text;
+        
+        // Update progress
+        const progressPercent = ((appState.currentQuestion + 1) / appState.totalQuestions) * 100;
+        document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+        document.getElementById('question-counter').textContent = `${appState.currentQuestion + 1}/${appState.totalQuestions}`;
+        
+        // Update section label
+        const sections = ["Demographics", "Goals", "Fitness Level", "Lifestyle", "Equipment", "Medical"];
+        const sectionIndex = Math.floor(appState.currentQuestion / 10);
+        document.getElementById('step-label').textContent = sections[sectionIndex] || "Assessment";
+        document.getElementById('progress-text').textContent = `Section ${sectionIndex + 1} of 6 - ${sections[sectionIndex]}`;
+        
+        // Clear and show options
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        
+        question.options.forEach((option, index) => {
+            const btn = document.createElement('button');
+            btn.className = "w-full option-btn p-3.5 rounded-lg text-sm font-bold flex justify-between items-center mb-1.5";
+            btn.innerHTML = `
+                <span class="text-left">${option}</span>
+                <div class="w-5 h-5 rounded-full border border-orange-primary/40 flex items-center justify-center">
+                    <div class="w-2 h-2 rounded-full bg-orange-primary opacity-0"></div>
+                </div>
+            `;
+            
+            // Add animation delay for staggered appearance
+            btn.style.animationDelay = `${index * 0.05}s`;
+            btn.classList.add('fade-in');
+            
+            btn.onclick = () => handleAnswer(option, question);
+            container.appendChild(btn);
+        });
+        
+        // Show quiz section
+        document.getElementById('quiz-section').classList.remove('hidden');
+        document.getElementById('analysis-section').classList.add('hidden');
+        document.getElementById('exercise-section').classList.add('hidden');
+        
+        // Update background
+        updateBackground('quiz');
+    }
+
+    function handleAnswer(answer, question) {
+        // Store in user profile
+        appState.userProfile[`q${question.id}`] = answer;
+        
+        // Store gender and age
+        if (question.id === 1) appState.gender = answer;
+        if (question.id === 2) appState.age = answer;
+        
+        // Update scores based on answers
+        updateScores(answer, question);
+        
+        // Add visual feedback
+        const selectedOption = event.target.closest('.option-btn');
+        if (selectedOption) {
+            selectedOption.classList.add('bg-orange-primary/20');
+            selectedOption.style.borderColor = 'var(--orange-primary)';
+            selectedOption.querySelector('.w-2.h-2').classList.remove('opacity-0');
+        }
+        
+        // Move to next question
+        setTimeout(() => {
+            appState.currentQuestion++;
+            showQuestion();
+        }, 300);
+    }
+
+    function updateScores(answer, question) {
+        // Use score map for accurate scoring
+        if (question.scoreMap && question.scoreMap[answer] !== undefined) {
+            const score = question.scoreMap[answer];
+            
+            // Categorize scores based on question type
+            if (question.category === "goals") {
+                if (question.id === 6) {
+                    // Primary goal
+                    if (answer === "Learn basic movements") appState.scores.strength += score;
+                    if (answer === "Learn advanced skills") appState.scores.skill += score;
+                }
+                if (question.id === 7) {
+                    // Skill interest
+                    appState.scores.skill += score;
+                }
+            }
+            
+            if (question.category === "fitness") {
+                // Fitness level questions
+                if (question.id === 17 || question.id === 18) {
+                    appState.scores.strength += score;
+                }
+                if (question.id === 19 || question.id === 20) {
+                    appState.scores.skill += score;
+                }
+                if (question.id === 21) {
+                    appState.scores.flexibility += score;
+                }
+                if (question.id === 22 || question.id === 23) {
+                    appState.scores.mobility += score;
+                }
+                if (question.id === 24) {
+                    appState.scores.strength += score * 0.5;
+                }
+                if (question.id === 25) {
+                    appState.scores.balance += score;
+                }
+            }
+            
+            if (question.category === "experience") {
+                // Experience level
+                appState.scores.strength += (30 - score); // Inverse: less experience = more need for strength
+                appState.scores.skill += (30 - score) * 0.5;
+            }
+            
+            if (question.category === "medical") {
+                // Medical issues
+                appState.scores.mobility += score * 0.5;
+                appState.scores.strength += score * 0.3;
+            }
+            
+            if (question.category === "lifestyle") {
+                // Lifestyle factors
+                if (question.id === 29 || question.id === 30) {
+                    appState.scores.endurance += score * 0.5;
+                }
+            }
+        }
+    }
+
+    function generatePersonalizedProgram() {
+        document.getElementById('quiz-section').classList.add('hidden');
+        document.getElementById('analysis-section').classList.remove('hidden');
+        
+        // Update background
+        updateBackground('analysis');
+        
+        // Analyze user profile and select appropriate exercises
+        analyzeUserProfile();
+        
+        // Calculate scores with normalization
+        const totalPossibleScore = 800; // Approximate maximum score
+        const totalUserScore = Object.values(appState.scores).reduce((a, b) => a + b, 0);
+        const scorePercentage = Math.min(100, Math.round((totalUserScore / totalPossibleScore) * 100));
+        
+        // Calculate individual scores for display
+        const focusScore = Math.min(100, Math.round(appState.scores.strength / 3));
+        const skillScore = Math.min(100, Math.round(appState.scores.skill / 2));
+        const programScore = Math.min(100, Math.round(100 - (scorePercentage / 2))); // Lower score = better starting point
+        
+        // Animate scores
+        animateScore('focus-score', focusScore);
+        animateScore('urgency-score', skillScore);
+        animateScore('program-score', programScore);
+        
+        // Generate analysis and solution points
+        generateAnalysis();
+    }
+
+    function analyzeUserProfile() {
+        // Clear any previous selections
+        appState.dayExercises = {};
+        appState.dayProgress = {};
+        appState.selectedExercises = [];
+        
+        // Determine primary focus area based on highest score
+        const scores = appState.scores;
+        const maxScore = Math.max(scores.strength, scores.skill, scores.mobility, scores.balance);
+        
+        let primaryCategory = "fundamental";
+        
+        // Determine primary category based on goals and scores
+        const primaryGoal = appState.userProfile.q6;
+        
+        if (primaryGoal === "Learn basic movements") {
+            primaryCategory = "fundamental";
+        } else if (primaryGoal === "Learn advanced skills") {
+            primaryCategory = "skill";
+        } else if (primaryGoal === "Build muscle") {
+            primaryCategory = "strength";
+        } else if (primaryGoal === "Improve strength") {
+            primaryCategory = "strength";
+        } else if (scores.skill > 50) {
+            primaryCategory = "skill";
+        } else if (scores.mobility > 40) {
+            primaryCategory = "mobility";
+        } else if (scores.endurance > 30) {
+            primaryCategory = "endurance";
+        }
+        
+        // Generate exercises for all 30 days
+        generate30DayProgram(primaryCategory);
+    }
+
+    function generate30DayProgram(primaryCategory) {
+        appState.dayExercises = {};
+        appState.dayProgress = {};
+        
+        // For each day, select appropriate exercises
+        for (let day = 1; day <= 30; day++) {
+            appState.dayExercises[day] = generateDayExercises(day, primaryCategory);
+            appState.dayProgress[day] = []; // Empty array for completed exercises per day
+        }
+        
+        // Set current day exercises
+        appState.selectedExercises = appState.dayExercises[1];
+    }
+
+    function generateDayExercises(day, primaryCategory) {
+        let dayExercises = [];
+        const userGender = appState.gender;
+        
+        // Helper function to get filtered exercises
+        const getFilteredExercises = (category, count) => {
+            let exercises = exerciseLibrary[category] || [];
+            // Filter by gender (all exercises are "both" in this library)
+            exercises = exercises.filter(ex => 
+                ex.gender === "both" || ex.gender === userGender
+            );
+            // Shuffle and take requested count
+            return shuffleArray(exercises).slice(0, count);
+        };
+        
+        // Day-specific progression
+        if (day <= 7) {
+            // Week 1: Fundamental exercises
+            dayExercises.push(...getFilteredExercises("fundamental", 4));
+            dayExercises.push(...getFilteredExercises("mobility", 1));
+            dayExercises.push(...getFilteredExercises("recovery", 1));
+        } else if (day <= 14) {
+            // Week 2: Add primary category
+            dayExercises.push(...getFilteredExercises("fundamental", 3));
+            dayExercises.push(...getFilteredExercises(primaryCategory, 2));
+            dayExercises.push(...getFilteredExercises("mobility", 1));
+        } else if (day <= 21) {
+            // Week 3: Focus on primary category
+            dayExercises.push(...getFilteredExercises("strength", 1));
+            dayExercises.push(...getFilteredExercises(primaryCategory, 3));
+            dayExercises.push(...getFilteredExercises("endurance", 1));
+            dayExercises.push(...getFilteredExercises("recovery", 1));
+        } else {
+            // Week 4: Advanced and flow
+            dayExercises.push(...getFilteredExercises("flow", 2));
+            dayExercises.push(...getFilteredExercises("skill", 2));
+            dayExercises.push(...getFilteredExercises(primaryCategory, 1));
+            dayExercises.push(...getFilteredExercises("strength", 1));
+        }
+        
+        // Ensure exactly 6 exercises per day
+        if (dayExercises.length > 6) {
+            dayExercises = dayExercises.slice(0, 6);
+        }
+        
+        // Sort by difficulty
+        dayExercises.sort((a, b) => {
+            const difficultyOrder = { "beginner": 1, "intermediate": 2, "advanced": 3 };
+            return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+        });
+        
+        return dayExercises;
+    }
+
+    function generateAnalysis() {
+        const analysisText = document.getElementById('analysis-text');
+        const solutionPoints = document.getElementById('solution-points');
+        
+        // Generate analysis based on scores and goals
+        let analysis = "Based on your comprehensive 50-point calisthenics assessment, ";
+        
+        const primaryGoal = appState.userProfile.q6 || "General fitness";
+        const experience = appState.userProfile.q9 || "Beginner";
+        
+        analysis += `your primary goal is <strong>${primaryGoal}</strong> and you're at <strong>${experience.toLowerCase()}</strong> level. `;
+        
+        if (appState.scores.strength > 50) {
+            analysis += "Strength development will be a key focus. ";
+        }
+        
+        if (appState.scores.skill > 40) {
+            analysis += "Skill progression is important for your goals. ";
+        }
+        
+        if (appState.scores.mobility > 30) {
+            analysis += "Mobility work will be incorporated to support skill development. ";
+        }
+        
+        if (appState.scores.balance > 20) {
+            analysis += "Balance training will enhance your body control. ";
+        }
+        
+        analysis += `Your 30-day calisthenics progression includes 6 carefully selected exercises each day, building from fundamentals to advanced skills.`;
+        
+        analysisText.innerHTML = analysis;
+        
+        // Generate solution points
+        solutionPoints.innerHTML = '';
+        
+        const solutions = [
+            `🎯 <span class='text-orange-light font-bold'>Skill-Focused:</span> Program tailored for ${primaryGoal}`,
+            "📊 <span class='text-orange-light font-bold'>Progressive Overload:</span> Gradually increases difficulty",
+            "🔄 <span class='text-orange-light font-bold'>Skill Progressions:</span> Step-by-step skill development",
+            "⏱️ <span class='text-orange-light font-bold'>Time-Efficient:</span> 30-45 minute sessions",
+            "📈 <span class='text-orange-light font-bold'>Trackable Progress:</span> Complete skills and advance days",
+            "🎬 <span class='text-orange-light font-bold'>Video Guidance:</span> Professional skill demonstrations"
+        ];
+        
+        solutions.forEach((solution, index) => {
+            const point = document.createElement('div');
+            point.className = "text-xs text-gray-300 flex items-start fade-in";
+            point.style.animationDelay = `${index * 0.1}s`;
+            point.innerHTML = `<i class="fas fa-check text-green-500 mr-2 mt-0.5"></i> ${solution}`;
+            solutionPoints.appendChild(point);
+        });
+    }
+
+    function showExercisePlan() {
+        document.getElementById('analysis-section').classList.add('hidden');
+        document.getElementById('exercise-section').classList.remove('hidden');
+        
+        // Update background
+        updateBackground('exercise');
+        
+        renderExercisePlan();
+    }
+
+    function renderExercisePlan() {
+        const exerciseList = document.getElementById('exercise-list');
+        exerciseList.innerHTML = '';
+        
+        // Update day display
+        document.getElementById('current-day').textContent = appState.currentDay;
+        
+        // Get exercises for current day
+        const currentDayExercises = appState.dayExercises[appState.currentDay] || [];
+        const completedExercises = appState.dayProgress[appState.currentDay] || [];
+        
+        // Update stats
+        const completedCount = completedExercises.length;
+        const totalExercises = currentDayExercises.length;
+        document.getElementById('completion-stats').textContent = `${completedCount}/${totalExercises} completed`;
+        
+        if (currentDayExercises.length === 0) {
+            exerciseList.innerHTML = `
+                <div class="text-center py-8">
+                    <i class="fas fa-dumbbell text-3xl text-orange-500 mb-3"></i>
+                    <p class="text-gray-300">Generating your personalized calisthenics program...</p>
+                    <button onclick="generatePersonalizedProgram()" class="mt-3 orange-btn px-4 py-2 rounded-lg text-sm">
+                        <i class="fas fa-redo mr-2"></i> Regenerate Program
+                    </button>
+                </div>
+            `;
+            return;
+        }
+        
+        currentDayExercises.forEach((exercise, index) => {
+            const isCompleted = completedExercises.includes(exercise.id);
+            const isCurrent = index === completedExercises.length;
+            const isLocked = index > completedExercises.length;
+            
+            const card = document.createElement('div');
+            card.className = `exercise-card p-3.5 rounded-lg ${isLocked ? 'locked' : ''} ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''} fade-in`;
+            card.style.animationDelay = `${index * 0.08}s`;
+            
+            card.innerHTML = `
+                <div class="flex items-center gap-3.5">
+                    <div class="number-indicator ${isCurrent ? 'number-current' : isCompleted ? 'number-completed' : 'number-locked'}">
+                        ${index + 1}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span class="category-tag">${exercise.category}</span>
+                            <span class="text-xs text-gray-400 font-bold">${exercise.difficulty}</span>
+                            ${exercise.equipment && exercise.equipment.length > 0 && exercise.equipment[0] !== "none" ? 
+                                `<span class="text-xs px-2 py-0.5 rounded bg-orange-900/30 text-orange-300" title="Equipment: ${exercise.equipment.join(', ')}">
+                                    <i class="fas fa-dumbbell mr-1"></i>${exercise.equipment.length}
+                                </span>` : 
+                                '<span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">No Equipment</span>'}
+                        </div>
+                        <h3 class="text-sm font-bold text-white mb-1.5 truncate text-3d-white">${exercise.name}</h3>
+                        <p class="text-xs text-gray-300 line-clamp-1 text-3d-secondary">${exercise.description}</p>
+                        <div class="flex items-center gap-3.5 mt-2 text-xs text-gray-400">
+                            <span class="flex items-center"><i class="fas fa-clock mr-1.5"></i> ${exercise.duration}</span>
+                            <span class="flex items-center"><i class="fas fa-redo mr-1.5"></i> ${exercise.reps}</span>
+                        </div>
+                    </div>
+                    <div class="shrink-0">
+                        ${isLocked ? 
+                            '<i class="fas fa-lock text-base text-gray-600"></i>' : 
+                         isCompleted ? 
+                            '<i class="fas fa-check-circle text-lg text-green-500" style="filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3))"></i>' : 
+                            '<i class="fas fa-play-circle text-lg text-orange-primary" style="filter: drop-shadow(0 2px 0 rgba(251,146,60,0.3))"></i>'}
+                    </div>
+                </div>
+            `;
+            
+            if (!isLocked) {
+                card.onclick = () => openExerciseVideo(exercise, index);
+            }
+            
+            exerciseList.appendChild(card);
+        });
+        
+        // Scroll to current exercise
+        setTimeout(() => {
+            const currentCard = document.querySelector('.exercise-card.current');
+            if (currentCard) {
+                currentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 300);
+    }
+
+    function openExerciseVideo(exercise, index) {
+        appState.currentVideoIndex = index;
+        
+        // Clear previous content
+        const videoFrame = document.getElementById('video-frame');
+        videoFrame.innerHTML = '';
+        
+        // Create 16:9 YouTube iframe with proper settings
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${exercise.videoCode}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`;
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.style.position = "absolute";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        
+        videoFrame.appendChild(iframe);
+        
+        // Update modal info
+        document.getElementById('video-title').textContent = exercise.name;
+        document.getElementById('video-description').textContent = exercise.description;
+        document.getElementById('video-duration').textContent = exercise.duration;
+        document.getElementById('video-reps').textContent = exercise.reps;
+        document.getElementById('video-category').textContent = exercise.category;
+        document.getElementById('solution-text').textContent = exercise.solution;
+        
+        // Show modal
+        document.getElementById('video-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        
+        // Add modal background
+        document.querySelector('.modal-background').classList.remove('hidden');
+    }
+
+    function repeatCurrentVideo() {
+        const currentDayExercises = appState.dayExercises[appState.currentDay] || [];
+        const currentExercise = currentDayExercises[appState.currentVideoIndex];
+        if (currentExercise) {
+            openExerciseVideo(currentExercise, appState.currentVideoIndex);
+        }
+    }
+
+    function nextVideo() {
+        // Mark current exercise as completed for current day
+        const currentDayExercises = appState.dayExercises[appState.currentDay] || [];
+        const currentExercise = currentDayExercises[appState.currentVideoIndex];
+        
+        if (currentExercise) {
+            if (!appState.dayProgress[appState.currentDay]) {
+                appState.dayProgress[appState.currentDay] = [];
+            }
+            
+            if (!appState.dayProgress[appState.currentDay].includes(currentExercise.id)) {
+                appState.dayProgress[appState.currentDay].push(currentExercise.id);
+            }
+        }
+        
+        closeVideoModal();
+        
+        // Check if all exercises completed for current day
+        const completedExercises = appState.dayProgress[appState.currentDay] || [];
+        const totalExercises = currentDayExercises.length;
+        
+        if (completedExercises.length === totalExercises) {
+            // Day completed, move to next day
+            if (appState.currentDay < 30) {
+                appState.currentDay++;
+                setTimeout(() => {
+                    renderExercisePlan();
+                    // Show completion message
+                    const completionMsg = document.createElement('div');
+                    completionMsg.className = "fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-900/90 text-white px-4 py-2 rounded-lg z-50 fade-in";
+                    completionMsg.innerHTML = `<i class="fas fa-check-circle mr-2"></i> Day ${appState.currentDay-1} completed! Starting Day ${appState.currentDay}`;
+                    document.body.appendChild(completionMsg);
+                    setTimeout(() => completionMsg.remove(), 3000);
+                }, 300);
+            } else {
+                setTimeout(() => {
+                    // Show final completion message
+                    const finalMsg = document.createElement('div');
+                    finalMsg.className = "fixed top-4 left-1/2 transform -translate-x-1/2 bg-orange-primary/90 text-white px-4 py-3 rounded-lg z-50 fade-in";
+                    finalMsg.innerHTML = `<i class="fas fa-trophy mr-2"></i> <strong>Congratulations!</strong> You've completed the 30-day calisthenics program!`;
+                    document.body.appendChild(finalMsg);
+                    setTimeout(() => finalMsg.remove(), 5000);
+                }, 300);
+            }
+        } else {
+            renderExercisePlan();
+        }
+    }
+
+    function closeVideoModal() {
+        document.getElementById('video-modal').classList.add('hidden');
+        document.getElementById('video-frame').innerHTML = '';
+        document.body.style.overflow = 'auto';
+        document.querySelector('.modal-background').classList.add('hidden');
+    }
+
+    function restartAssessment() {
+        // Reset all state
+        appState = {
+            currentQuestion: 0,
+            gender: null,
+            age: null,
+            primaryGoal: null,
+            skillLevel: null,
+            experience: null,
+            limitations: [],
+            scores: { strength: 0, endurance: 0, mobility: 0, skill: 0, flexibility: 0, balance: 0 },
+            currentDay: 1,
+            completedExercises: [],
+            totalQuestions: 50,
+            selectedCategory: null,
+            selectedExercises: [],
+            currentVideoIndex: 0,
+            userProfile: {},
+            dayProgress: {},
+            dayExercises: {}
+        };
+        
+        // Reset UI
+        document.getElementById('analysis-section').classList.add('hidden');
+        document.getElementById('exercise-section').classList.add('hidden');
+        document.getElementById('quiz-section').classList.remove('hidden');
+        
+        // Update background
+        updateBackground('quiz');
+        
+        // Restart questions
+        showQuestion();
+    }
+
+    // ==================== HELPER FUNCTIONS ====================
+
+    function animateScore(elementId, targetValue) {
+        const element = document.getElementById(elementId);
+        let current = 0;
+        const increment = targetValue / 40;
+        const interval = setInterval(() => {
+            current += increment;
+            if (current >= targetValue) {
+                current = targetValue;
+                clearInterval(interval);
+            }
+            element.textContent = Math.round(current) + "%";
+        }, 20);
+    }
+
+    function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
+    function updateBackground(section) {
+        // Hide all backgrounds first
+        document.getElementById('quiz-bg').classList.add('hidden');
+        document.getElementById('analysis-bg').classList.add('hidden');
+        document.getElementById('exercise-bg').classList.add('hidden');
+        
+        // Show appropriate background
+        if (section === 'quiz') {
+            document.getElementById('quiz-bg').classList.remove('hidden');
+        } else if (section === 'analysis') {
+            document.getElementById('analysis-bg').classList.remove('hidden');
+        } else if (section === 'exercise') {
+            document.getElementById('exercise-bg').classList.remove('hidden');
+        }
+    }
+
+    function setupEventListeners() {
+        // Escape key closes modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (!document.getElementById('video-modal').classList.contains('hidden')) {
+                    closeVideoModal();
+                }
+                if (!document.getElementById('question-popup-modal').classList.contains('hidden')) {
+                    closeQuestionPopup();
+                }
+            }
+        });
+        
+        // Touch feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.transform = 'translateY(1px)';
+            });
+            btn.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // Handle back button for WebView
+        window.addEventListener('popstate', function(event) {
+            if (!document.getElementById('video-modal').classList.contains('hidden')) {
+                closeVideoModal();
+                history.pushState(null, null, window.location.href);
+            }
+            if (!document.getElementById('question-popup-modal').classList.contains('hidden')) {
+                closeQuestionPopup();
+                history.pushState(null, null, window.location.href);
+            }
+        });
+    }
+
+    // Question popup functions (for future use)
+    function showQuestionPopup() {
+        // Implementation for popup questions
+    }
+
+    function closeQuestionPopup() {
+        document.getElementById('question-popup-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextQuestionFromPopup() {
+        // Implementation for popup navigation
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>
